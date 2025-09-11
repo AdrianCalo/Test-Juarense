@@ -1,3 +1,6 @@
+//importo la url desde variables.js
+const BaseUrl= require("./variableURL");
+
 const { Builder, By, until } = require("selenium-webdriver");
 
 (async function testLogin() {
@@ -5,7 +8,7 @@ const { Builder, By, until } = require("selenium-webdriver");
 
   try {
     // Abrir tu página
-    await driver.get("http://localhost:3000");
+    await driver.get(BaseUrl);
 
     // Esperar a que aparezca el input de email
     let inputEmail = await driver.wait(
@@ -31,17 +34,28 @@ const { Builder, By, until } = require("selenium-webdriver");
 
 
   // Esperar a que la URL contenga "/profile"
-await driver.wait(until.urlContains("/profile"), 5000);
+await driver.wait(until.urlContains("/profile"), 10000);
 
 let currentUrl = await driver.getCurrentUrl();
 console.log("URL actual:", currentUrl);
 
 // Validar que sea la correcta
-if (currentUrl === "http://localhost:3000/profile") {
+if (currentUrl === BaseUrl,"/profile") {
   console.log("Redirección correcta ✅");
 } else {
   console.log("Redirección incorrecta ❌");
 }
+
+//verificamos que alla elemetos de la nueva pagina
+let btnActualiza = await driver.wait(
+  until.elementLocated(By.xpath("//button[contains(text(),'Actualizar Datos')]")),
+  5000
+);
+  if (btnActualiza) {
+    console.log("Elemento 'Actualizar Datos' encontrado, Pagina correcta ✅");
+  }else{
+    console.log("Elemento 'Actualizar Datos' no encontrado, Pagina incorrecta ❌");
+  }
 
   } catch (error) {
     console.error("❌ Error en el test:", error);

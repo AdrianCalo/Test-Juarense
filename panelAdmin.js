@@ -1,3 +1,6 @@
+//importo la url desde variables.js
+const BaseUrl= require("./variableURL");
+
 const {until, Builder, By }= require("selenium-webdriver");
 
 (async function testPanelAdmin(){
@@ -5,14 +8,14 @@ const {until, Builder, By }= require("selenium-webdriver");
 
     try{
         //abrimos la pagina
-        await driver.get("http://localhost:3000");
+        await driver.get(BaseUrl);
 
         //esperamos qeu aparescan los input del login
         let inputEmail= await driver.wait(
             until.elementLocated(By.id("email")),
             5000
         );
-        await inputEmail.sendKeys("elvigigato@hotmail.com");
+        await inputEmail.sendKeys("admin@gmail.com");
 
         //esperamos a qeu aparesca el campo password
         let inputPassword= await driver.wait(
@@ -38,7 +41,7 @@ const {until, Builder, By }= require("selenium-webdriver");
         console.log("URL actual:", currentUrl);
 
         //validamos que sea correcta
-        if(currentUrl === "http://localhost:3000/profile"){
+        if(currentUrl === BaseUrl,"/profile"){
              console.log("Redirección correcta ✅");
         } else {
         console.log("Redirección incorrecta ❌"); 
@@ -56,7 +59,7 @@ const {until, Builder, By }= require("selenium-webdriver");
         console.log("Nueva URL:", newUrl);
 
         //validamos que sea correcta
-        if(newUrl=== "http://localhost:3000/admin"){
+        if(newUrl=== BaseUrl,"/admin"){
             console.log("Redirección a admin correcta ✅");
         } else {
         console.log("Redirección incorrecta ❌");
