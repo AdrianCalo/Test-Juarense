@@ -1,3 +1,8 @@
+/*Este metodo muestra el caso de que el usuario que 
+ingresa al sitio sea administrador, por lo que tendra 
+una opcion mas a elegir "Admin" */
+
+
 //importo la url desde variables.js
 const BaseUrl= require("./variableURL");
 
