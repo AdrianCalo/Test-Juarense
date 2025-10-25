@@ -136,6 +136,11 @@ const btnInscription= await driver.findElement(By.xpath("//button[contains(text(
 await btnInscription.click();
 console.log('Se hizo click en el boton inscribir');
 
+/*Al realizar el click si la disciplina ya esta carga no arroja error porque poruqe no estoy verificando 
+si el mensaje de error aparece, solo estoy verificando que se haga clik en el boton y luego busco la disciplina 
+y como la misma nunca se elimino sigue registrada y el test corre bien.*/
+/* Para verificar el mensaje de error lo haremos en el archivo BajaDisciplina*/
+
 //busco el boton cancelar para volver y verificar que se haya inscrito
 let btnCancelar = await driver.findElement(By.xpath("//button[contains(text(),'Cancelar')]"));
 await btnCancelar.click();
@@ -160,11 +165,6 @@ if (texto.toLowerCase().includes('bochas')) {
 } else {
   console.log("⚠️ La disciplina 'bochas' no figura en el texto:", texto);
 }
-
-
-
-
-//Agregar dar de baja
 
 }catch(error){
     console.error("Error durante el test:",error);
